@@ -9,5 +9,8 @@ Meteor.startup(() => {
   });
 });
 
-WebApp.connectHandlers
-  .use(req => console.log(req));
+const middleware = ConnectRoute(function(router) {
+  router.get('/:token', (req) => console.log(req));
+});
+
+WebApp.connectHandlers.use(middleware);
